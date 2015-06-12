@@ -1,3 +1,0 @@
-# Rmail
-
-unify them all!
