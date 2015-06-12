@@ -5,11 +5,12 @@ unite all the protocols!
 
 #### Starting
 
-``` ruby rmail.rb 
+``` 
+ruby rmail.rb 
 ```
 
 #### Configuration
 see example.conf
 
 #### Plugin developement
-inherut __backend_plugin.rb__
+inherit __backend_plugin.rb__
