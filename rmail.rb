@@ -3,9 +3,11 @@
 require_relative 'account'
 require_relative 'console_backend'
 require_relative 'contact'
+require 'parseconfig'
 
 class Rmail
   def initialize()
+    @config = ParseConfig.new('example.conf')
 
     @accounts = []
     @contacts = []
@@ -24,8 +26,6 @@ class Rmail
     puts %(What do you want to do?
            1. Send message
            2. Display Accounts
-           3. Something else TODO
-           4. quit
           )
 
 
@@ -34,10 +34,6 @@ class Rmail
       compose_message
     when '2'
       display_accounts
-    when '3'
-      puts "hello world"
-    when '4'
-      puts "bye..."
     else
       puts "Specify a correct number"
 
@@ -46,7 +42,6 @@ class Rmail
   end
 
   def compose_message
-    display_accounts
     puts "choose contact:" 
     @contacts.each {|c| puts "#{c.id} #{c.name} (#{c.account.id})" }
     recipient = gets.chomp!
@@ -64,12 +59,13 @@ class Rmail
   end
 
   def load_accounts
-    #TODO stub until we have accounts
-    10.times do |i|
-      @accounts << Account.new(i, 'console', "user_#{i}", "secret")
-    end 
 
-    #TODO load contacts
+
+    i =0 
+    @config.get_groups.each do |a|
+      @accounts << Account.new(i, @config[a]['type'], @config[a]['user'], @config[a]['pass'])
+      i+=1
+    end
   end
 
   def load_contacts

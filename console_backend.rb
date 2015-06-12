@@ -14,8 +14,11 @@ class ConsoleloggerBackend < BackendPlugin
     puts "---------------------"
   end
 
-  def contacts
+  def protocols_supported
+    ['console']    
+  end
 
-    return ['peter','heinrich','juergen']
+  def contacts
+    ['peter','heinrich','juergen']
   end
 end

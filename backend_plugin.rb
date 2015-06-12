@@ -2,7 +2,6 @@
 
 class BackendPlugin
   def initialize(*args)
-    
   end
 
   def send_message(recipient, message)
@@ -10,6 +9,10 @@ class BackendPlugin
   end
 
   def cotacts
+    raise NotImplementedError.new('OH NOES!')
+  end
+
+  def protocols_supported
     raise NotImplementedError.new('OH NOES!')
   end
 end
