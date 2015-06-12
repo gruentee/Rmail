@@ -4,8 +4,21 @@ class Account
   def initialize(id, type, user, pass)
     @id = id
     @user = user
+    @backend = choose_backend 
     @pass = pass
-    @type = type
-    @contacts = ["c_#{rand(1000)}", "c_#{rand(1000)}","c_#{rand(1000)}","c_#{rand(1000)}"]
+    @contacts = @backend.contacts
+  end
+
+  def send_message(recipient, message)
+    @backend.send_message(recipient, message)
+    
+  end
+
+  private
+
+  def choose_backend
+    #TODO, chooose between backendas
+    ConsoleloggerBackend.new
+    
   end
 end

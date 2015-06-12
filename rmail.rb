@@ -1,12 +1,16 @@
 # encoding: utf-8
 
 require_relative 'account'
+require_relative 'console_backend'
+require_relative 'contact'
+
 class Rmail
   def initialize()
 
     @accounts = []
     @contacts = []
     load_accounts 
+    load_contacts
 
   end
 
@@ -36,28 +40,22 @@ class Rmail
       puts "bye..."
     else
       puts "Specify a correct number"
-    
+
     end
-    
+
   end
 
   def compose_message
     display_accounts
     puts "choose contact:" 
-    @contacts.each {|c| puts "#{c.id} #{c.name} (#{c.account})" }
+    @contacts.each {|c| puts "#{c.id} #{c.name} (#{c.account.id})" }
     recipient = gets.chomp!
     puts "enter message:"
     message = gets.chomp!
 
-   send_message(recipient, message) 
+    @contacts[recipient.to_i].account.send_message(@contacts[recipient.to_i], message)
 
-    
-  end
 
-  def send_message(recipient, message)
-    #TODO
-    
-    
   end
 
   def display_accounts
@@ -73,6 +71,17 @@ class Rmail
 
     #TODO load contacts
   end
+
+  def load_contacts
+    @contacts = []
+    id = 0
+    @accounts.each do |a|
+      a.contacts.each do |c| @contacts << Contact.new(id, c, a) 
+      id +=1
+      end
+    end
+  end
+
 end
 
 
