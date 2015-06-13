@@ -22,17 +22,6 @@ class Rmail
 
   private 
 
-  def load_backends
-#TODO automate this
-require_relative 'console_backend'
-
-      #require "plugins/#{requirename}"
-
-      #extend Object.const_get("#{includename}")
-      #send("#{requirename}_init")
-    
-  end
-
   def choose_action
     puts %(What do you want to do?
            1. Send message
@@ -47,9 +36,7 @@ require_relative 'console_backend'
       display_accounts
     else
       puts "Specify a correct number"
-
     end
-
   end
 
   def compose_message
@@ -58,10 +45,7 @@ require_relative 'console_backend'
     recipient = gets.chomp!
     puts "enter message:"
     message = gets.chomp!
-
     @contacts[recipient.to_i].account.send_message(@contacts[recipient.to_i], message)
-
-
   end
 
   def display_accounts
@@ -70,16 +54,17 @@ require_relative 'console_backend'
   end
 
   def load_accounts
-
-
+    # Load the accounts based on config file with unique ID
     i =0 
     @config.get_groups.each do |a|
-      @accounts << Account.new(i, @config[a]['type'], @config[a]['user'], @config[a]['pass'])
+
+            @accounts << Account.new(i, @config[a])
       i+=1
     end
   end
 
   def load_contacts
+    # Load contacts from all Accounts and give them a unique ID
     @contacts = []
     id = 0
     @accounts.each do |a|

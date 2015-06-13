@@ -20,9 +20,7 @@ Register new Plugins like this:
 ````ruby
 
 class PluginX
-  Backend.register_backend 'typex' do |url|
-    self.new
-  end
+  Backend.register_backend 'typex' do self.new end
 
   #Here be methods
   #

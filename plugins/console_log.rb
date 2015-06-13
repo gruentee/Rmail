@@ -1,9 +1,10 @@
 class ConsoleLoggerPlugin
 
+  # Simple example plugin that logs to the console instead of sending anywhere
 
-  Backend.register_backend 'console' do |url|
-    self.new
-  end
+
+  # Register the plugin when loaded to the type 'console'
+  Backend.register_backend 'console' do self.new end
 
   def say_name
     puts "ich bin plugin1"

@@ -2,11 +2,12 @@ class Account
   require_relative 'backend'
   attr_reader :id, :type, :user, :pass, :contacts
 
-  def initialize(id, type, user, pass)
+  def initialize(id, options)
+    @type = options['type']
     @id = id
-    @user = user
+    @user = options['user']
     @backend = Backend.get_backend type
-    @pass = pass
+    @options = options
     @contacts = @backend.contacts
   end
 
