@@ -10,9 +10,9 @@ class ConsoleLoggerPlugin
     puts "ich bin plugin1"
   end
 
-  def send_message(recipient, message)
+  def send_message(recipient, message, options)
     puts "---------------------"
-    puts "Mitteilung an #{recipient.name}: #{message}"
+    puts "Mitteilung an #{recipient.name}: #{message} mit optionen #{options}"
     puts "---------------------"
   end
 

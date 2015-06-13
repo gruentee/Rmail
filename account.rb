@@ -3,15 +3,15 @@ class Account
   attr_reader :id, :type, :user, :pass, :contacts
 
   def initialize(id, options)
-    @type = options['type']
     @id = id
+    @options = options
+    @type = options['type']
     @user = options['user']
     @backend = Backend.get_backend type
-    @options = options
     @contacts = @backend.contacts
   end
 
   def send_message(recipient, message)
-    @backend.send_message(recipient, message)
+    @backend.send_message(recipient, message, @options)
   end
 end
