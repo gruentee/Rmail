@@ -14,6 +14,9 @@ see example.conf
 
 #### Plugin developement
 
+Register new Plugins like this:
+
+
 ````ruby
 
 class PluginX
@@ -26,5 +29,6 @@ class PluginX
 end
 
 ````
-
+Plugins should be placed in the plugins directory and will be autoloaded.
+Accounts will choose the right Plugin based on the configured type option.
 
