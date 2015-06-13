@@ -1,12 +1,12 @@
 # encoding: utf-8
 
 require_relative 'account'
-require_relative 'console_backend'
 require_relative 'contact'
 require 'parseconfig'
 
 class Rmail
   def initialize()
+
     @config = ParseConfig.new('example.conf')
 
     @accounts = []
@@ -21,6 +21,17 @@ class Rmail
   end
 
   private 
+
+  def load_backends
+#TODO automate this
+require_relative 'console_backend'
+
+      #require "plugins/#{requirename}"
+
+      #extend Object.const_get("#{includename}")
+      #send("#{requirename}_init")
+    
+  end
 
   def choose_action
     puts %(What do you want to do?

@@ -1,11 +1,12 @@
-# encoding: utf-8
-# Stub backend for testing, only logs to console instead of sending.
-#
-require_relative 'backend_plugin'
+class ConsoleLoggerPlugin
 
-class ConsoleloggerBackend < BackendPlugin
-  def initialize(*args)
-    
+
+  Backend.register_backend 'console' do |url|
+    self.new
+  end
+
+  def say_name
+    puts "ich bin plugin1"
   end
 
   def send_message(recipient, message)
@@ -21,4 +22,6 @@ class ConsoleloggerBackend < BackendPlugin
   def contacts
     ['peter','heinrich','juergen']
   end
+
+
 end

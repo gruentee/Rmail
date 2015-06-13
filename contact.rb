@@ -6,7 +6,5 @@ class Contact
     @id = id
     @name = name
     @account = account
-
-    
   end
 end

@@ -10,7 +10,7 @@ class Backend
     if handler
       return handler.call
     else
-      raise "Found account type #{type} but no matching plugin"
+      return nil
     end
   end
 end
@@ -18,3 +18,6 @@ end
 Dir["plugins/*.rb"].each {|file| require_relative file }
 
 
+Backend.get_backend('type1').say_name
+Backend.get_backend('type1').say_name
+Backend.get_backend('type2').say_name

@@ -13,4 +13,18 @@ ruby rmail.rb
 see example.conf
 
 #### Plugin developement
-inherit __backend_plugin.rb__
+
+````ruby
+
+class PluginX
+  Backend.register_backend 'typex' do |url|
+    self.new
+  end
+
+  #Here be methods
+  #
+end
+
+````
+
+
